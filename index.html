@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coryhec — developer portfolio</title>
+  <meta name="description" content="Software developer building tools that save time — from academic utilities to open-source game clients." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0f11;
+      --bg-surface: #15171a;
+      --bg-hover: #1c1f23;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text-primary: #f0f0ee;
+      --text-secondary: #8a8d93;
+      --text-muted: #4f535a;
+      --accent-blue: #4a9eff;
+      --accent-purple: #9d85f2;
+      --accent-blue-dim: rgba(74,158,255,0.1);
+      --accent-purple-dim: rgba(157,133,242,0.1);
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    html { background: var(--bg); color: var(--text-primary); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+
+    body { min-height: 100vh; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent-blue); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent-blue);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent-blue);
+    }
+    .hero-name {
+      font-size: clamp(40px, 8vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--accent-blue);
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: var(--bg-surface);
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 56px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects { display: flex; flex-direction: column; gap: 1px; }
+
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      transition: border-color 0.15s, background 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-hover);
+    }
+    .project-card + .project-card { margin-top: 12px; }
+
+    .card-strip {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+    }
+    .strip-blue { background: var(--accent-blue); }
+    .strip-purple { background: var(--accent-purple); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .card-title-group { display: flex; align-items: center; gap: 12px; }
+    .card-icon {
+      width: 34px; height: 34px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .icon-blue { background: var(--accent-blue-dim); color: var(--accent-blue); }
+    .icon-purple { background: var(--accent-purple-dim); color: var(--accent-purple); }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .card-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      background: var(--bg);
+      transition: border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .card-link:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+    .card-link svg { width: 13px; height: 13px; }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .tag-blue { border-color: rgba(74,158,255,0.25); color: var(--accent-blue); }
+    .tag-purple { border-color: rgba(157,133,242,0.25); color: var(--accent-purple); }
+
+    .card-stats { display: flex; gap: 16px; }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .stat strong { color: var(--text-secondary); font-weight: 500; }
+    .stat svg { width: 13px; height: 13px; opacity: 0.6; }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+    .about-text + .about-text { margin-top: 14px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--text-primary); }
+    .footer-link svg { width: 15px; height: 15px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .hero { padding: 48px 0 40px; }
+      .project-card { padding: 20px; }
+      .card-header { flex-direction: column; gap: 12px; }
+      .card-actions { align-self: flex-end; }
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav>
+    <a href="#" class="nav-logo">coryhec<span>.</span></a>
+    <div class="nav-links">
+      <a href="#projects">projects</a>
+      <a href="#about">about</a>
+      <a href="https://github.com/coryhec" target="_blank" rel="noopener">github</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">available for work</p>
+    <h1 class="hero-name">Building tools<br>that <em>save time.</em></h1>
+    <p class="hero-desc">Software developer focused on desktop utilities and open-source projects — from academic tools to game client infrastructure.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">C#</span>
+      <span class="hero-tag">desktop apps</span>
+      <span class="hero-tag">web scraping</span>
+      <span class="hero-tag">open source</span>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <p class="section-label">projects</p>
+    <div class="projects">
+
+      <!-- Flarial Launcher -->
+      <article class="project-card">
+        <div class="card-strip strip-purple"></div>
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="card-icon icon-purple">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2a2.5 2.5 0 0 0-3-3"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22 22 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            </div>
+            <h2 class="card-title">Flarial Launcher</h2>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/flarialmc/launcher" target="_blank" rel="noopener" class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.683-.104-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.377.203 2.394.1 2.647.641.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"/></svg>
+              source
+            </a>
+          </div>
+        </div>
+        <p class="card-desc">Official launcher for Flarial Client, a Minecraft Bedrock mod client. Handles game launching, DLL injection via <code style="font-family:var(--mono);font-size:12px;color:var(--accent-purple)">--inject</code>, and update delivery. A production-grade open-source project actively maintained with 1,471 commits.</p>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="tag tag-purple">C#</span>
+            <span class="tag">game tooling</span>
+            <span class="tag">DLL injection</span>
+            <span class="tag">Minecraft</span>
+          </div>
+          <div class="card-stats">
+            <span class="stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <strong>28</strong> stars
+            </span>
+            <span class="stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>
+              <strong>23</strong> forks
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CIE Past Paper Tracker -->
+      <article class="project-card">
+        <div class="card-strip strip-blue"></div>
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="card-icon icon-blue">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h2 class="card-title">CIE Past Paper Tracker</h2>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/coryhec/CIEPpTracker" target="_blank" rel="noopener" class="card-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.683-.104-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.377.203 2.394.1 2.647.641.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"/></svg>
+              source
+            </a>
+          </div>
+        </div>
+        <p class="card-desc">Scrapes and downloads A-Level past papers from multiple sources into a clean local directory. Track completion per subject, spot missing paper variants, and attach comments to any paper to revisit later.</p>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="tag tag-blue">C#</span>
+            <span class="tag">web scraping</span>
+            <span class="tag">A-Levels</span>
+            <span class="tag">CLI tool</span>
+          </div>
+          <div class="card-stats">
+            <span class="stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <strong>4</strong> features
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <p class="section-label">about</p>
+    <p class="about-text">I'm a developer with a focus on building practical desktop tools in C#. I like solving problems that have a clear payoff — automating tedious tasks, improving developer or student workflows, and shipping software that actually gets used.</p>
+    <p class="about-text">Currently open to new projects and collaborations. Feel free to reach out on GitHub.</p>
+  </section>
+
+  <footer>
+    <span class="footer-copy">coryhec · 2025</span>
+    <div class="footer-links">
+      <a href="https://github.com/coryhec" target="_blank" rel="noopener" class="footer-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.683-.104-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.377.203 2.394.1 2.647.641.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.522 2 12 2z"/></svg>
+        github.com/coryhec
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
