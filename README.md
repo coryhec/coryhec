@@ -7,7 +7,7 @@ i've also been making discord bots mainly to make organisation and navigation mu
 
 **past work**
 
-- 🚀 &nbsp;**Launcher Developer @ [Flarial Client](https://github.com/flarialmc/launcher)** — built and maintained the official launcher for one of the most-used Bedrock DLL clients; handles game launching, DLL injection, and update delivery
+- 🚀 &nbsp;**Formner Launcher Developer @ [Flarial Client](https://github.com/flarialmc/launcher)** — built and maintained the official launcher for one of the most-used Bedrock DLL clients; handles game launching, DLL injection, and update delivery
 - 🎮 &nbsp;**Founder of Plasmic Client** *(now known as [Onix Client](https://onixclient.com))* — started what grew into one of the most popular Minecraft Bedrock injectable clients, with 90+ built-in modules and a community of hundreds of thousands
 
 ---
