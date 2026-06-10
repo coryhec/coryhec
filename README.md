@@ -16,7 +16,8 @@ i build desktop tools and have spent a fair bit of time in the minecraft bedrock
 
 | project | description | stack |
 |---|---|---|
-| Impulse Ranked Bot *(private)* | ELO engine, match logging, leaderboards & moderation for a 5k-member ranked Bedrock PvP server | C# |
+| Impulse Ranked Bot *(private)* | ELO engine, match logging, leaderboards & moderation for a 5k-member ranked Bedrock PvP server | Python / JS |
+| HiveConnect *(open source)* | Go bot built on gophertunnel for private competitive matchmaking on Hive — packet system, REST API, Discord bot integration; unfinished learning project | C# |
 | [CIEPpTracker](https://github.com/coryhec/CIEPpTracker) | scrapes & downloads A-Level past papers; tracks completion across subjects | C# |
 | [Flarial Launcher](https://github.com/flarialmc/launcher) | official launcher for Flarial Client with DLL injection support | C# |
 
@@ -26,6 +27,7 @@ i build desktop tools and have spent a fair bit of time in the minecraft bedrock
 
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 
 ---
